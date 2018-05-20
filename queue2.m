@@ -1,13 +1,13 @@
-%Í³¼Æ²ÎÊı
-c=zeros(80,1); %²å¶ÓÕßÊıÄ¿
-cus=zeros(80,1);%²å¶ÓÕßÆ½¾ù²»ÂúÒâ¶È
-ucus=zeros(80,1);%²»²å¶ÓÕßÆ½¾ù²»ÂúÒâ¶È
-awt=zeros(80,1);%Æ½¾ùµÈ´ıÊ±¼ä
-ct=zeros(80,1);%²å¶ÓÕßÆ½¾ùµÈ´ıÊ±¼ä
-uct=zeros(80,1);%²»²å¶ÓÕßÆ½¾ùµÈ´ıÊ±¼ä
-aus=zeros(80,1);%Æ½¾ù²»ÂúÒâ¶È
-nowcheat=zeros(80,1);%²å¶ÓÕß±ÈÂÊ
-average_tolerance=zeros(80,1);%²»²å¶ÓÕßÆ½¾ùÈİÈÌÂÊ
+%ç»Ÿè®¡å‚æ•°
+c=zeros(80,1); %æ’é˜Ÿè€…æ•°ç›®
+cus=zeros(80,1);%æ’é˜Ÿè€…å¹³å‡ä¸æ»¡æ„åº¦
+ucus=zeros(80,1);%ä¸æ’é˜Ÿè€…å¹³å‡ä¸æ»¡æ„åº¦
+awt=zeros(80,1);%å¹³å‡ç­‰å¾…æ—¶é—´
+ct=zeros(80,1);%æ’é˜Ÿè€…å¹³å‡ç­‰å¾…æ—¶é—´
+uct=zeros(80,1);%ä¸æ’é˜Ÿè€…å¹³å‡ç­‰å¾…æ—¶é—´
+aus=zeros(80,1);%å¹³å‡ä¸æ»¡æ„åº¦
+nowcheat=zeros(80,1);%æ’é˜Ÿè€…æ¯”ç‡
+average_tolerance=zeros(80,1);%ä¸æ’é˜Ÿè€…å¹³å‡å®¹å¿ç‡
 load('initialization');
 for x=1:80
 disp(x);
@@ -33,24 +33,24 @@ cheated_person_rates=nowcheat(x)/students;
 nowcheat(x)=cheated_person_rates;
 disp(['now cheat rate',num2str(cheated_person_rates)]);
 queue_limit=200;
-students_arrived=0;    %µ½´ïÈËÊı
-students_quit=0;       %ÍË³ö£¨ÖĞÍ¾Àë¿ª£©ÈËÊı
-students_leave=0;      %½ÓÊÜÍê·şÎñ´Ó´°¿ÚÀë¿ªµÄÈËÊı
-students_cheat=0;      %Êµ¼Ê²å¶ÓµÄÈËÊı
-students_change=0;     %Êµ¼Ê»»¶ÓÎéµÄÈËÊı
-maxlength=zeros(queues,1);%ËùÓĞ¶ÓÁĞÔø´ïµ½µÄ×î´ó³¤¶È
-student_inline=0;      %´ËÊ±ÔÚÅÅ¶ÓµÄÈËÊı
-maxstudent=0;          %Í¬Ò»Ê±¼ä½øĞĞÅÅ¶ÓµÄ×î´óÈËÊı
-average_wait_time=0;   %Æ½¾ùµÈ´ıÊ±¼ä
-average_unSatisfaction=0; %Æ½¾ù²»ÂúÒâ¶È
-sample_point=0;        %µÚ¼¸¸ö²ÉÑùµã
+students_arrived=0;    %åˆ°è¾¾äººæ•°
+students_quit=0;       %é€€å‡ºï¼ˆä¸­é€”ç¦»å¼€ï¼‰äººæ•°
+students_leave=0;      %æ¥å—å®ŒæœåŠ¡ä»çª—å£ç¦»å¼€çš„äººæ•°
+students_cheat=0;      %å®é™…æ’é˜Ÿçš„äººæ•°
+students_change=0;     %å®é™…æ¢é˜Ÿä¼çš„äººæ•°
+maxlength=zeros(queues,1);%æ‰€æœ‰é˜Ÿåˆ—æ›¾è¾¾åˆ°çš„æœ€å¤§é•¿åº¦
+student_inline=0;      %æ­¤æ—¶åœ¨æ’é˜Ÿçš„äººæ•°
+maxstudent=0;          %åŒä¸€æ—¶é—´è¿›è¡Œæ’é˜Ÿçš„æœ€å¤§äººæ•°
+average_wait_time=0;   %å¹³å‡ç­‰å¾…æ—¶é—´
+average_unSatisfaction=0; %å¹³å‡ä¸æ»¡æ„åº¦
+sample_point=0;        %ç¬¬å‡ ä¸ªé‡‡æ ·ç‚¹
 
 temp=[];
 queue_length=zeros(queues,1);
 queue_member=zeros(queues,queue_limit);
 Nowtime=0;
-Mintime=0;%´ËÊ±¼ÓÈëÄ³¸ö¶ÓÎéÄÜµÃµ½µÄ×î¶ÌÆÚÍûÅÅ¶ÓÊ±¼ä
-%ÓÃÓÚ»­Í¼
+Mintime=0;%æ­¤æ—¶åŠ å…¥æŸä¸ªé˜Ÿä¼èƒ½å¾—åˆ°çš„æœ€çŸ­æœŸæœ›æ’é˜Ÿæ—¶é—´
+%ç”¨äºç”»å›¾
 Nowtime_sample=zeros(2*students,1);
 students_arrived_sample=zeros(2*students,1);
 students_quit_sample=zeros(2*students,1);
@@ -62,14 +62,14 @@ maxlength_sample=zeros(2*students,queues);
 average_wait_time_sample=zeros(2*students,1);
 average_unSatisfaction_sample=zeros(2*students,1);
 
-while(students_arrived<students) %²»¶ÏÓĞÑ§Éúµ½À´
+while(students_arrived<students) %ä¸æ–­æœ‰å­¦ç”Ÿåˆ°æ¥
     sample_point=sample_point+1;
     students_arrived= students_arrived+1;
     Nowtime=Nowtime+exprnd(1/mean_arrival_rate);
     Nowtime_sample(sample_point)=Nowtime;
-    %¸ÃÀë¿ªµÄÈË¶¼Àë¿ª£¬²¢ÇÒÃ¿¸öÒÑÔÚÅÅ¶ÓÇÒ¹Û²ìÁËÒ»¶ÎÊ±¼äµÄÈËËãÒ»ÏÂÊÇ·ñÒªÀë¿ª»ò»»¶Ó
+    %è¯¥ç¦»å¼€çš„äººéƒ½ç¦»å¼€ï¼Œå¹¶ä¸”æ¯ä¸ªå·²åœ¨æ’é˜Ÿä¸”è§‚å¯Ÿäº†ä¸€æ®µæ—¶é—´çš„äººç®—ä¸€ä¸‹æ˜¯å¦è¦ç¦»å¼€æˆ–æ¢é˜Ÿ
     for i=1:students_arrived-1 
-        if Nowtime>=student(i).RealTime && (student(i).Leaved==false) %·şÎñÍêÁË 
+        if Nowtime>=student(i).RealTime && (student(i).Leaved==false) %æœåŠ¡å®Œäº† 
             %disp(['student ',num2str(i),' leaved']);
             students_leave= students_leave+1;
             student(i).Leaved=true;
@@ -85,7 +85,7 @@ while(students_arrived<students) %²»¶ÏÓĞÑ§Éúµ½À´
         end
     end
     for i=1:students_arrived-1 
-        if Nowtime>=student(i).EnterTime+student(i).ObserveTime && student(i).Leaved==false %¶ÓÎéÖĞµÄÈËÍ¨¹ı±È½Ï¿ÉÄÜºó»Ú
+        if Nowtime>=student(i).EnterTime+student(i).ObserveTime && student(i).Leaved==false %é˜Ÿä¼ä¸­çš„äººé€šè¿‡æ¯”è¾ƒå¯èƒ½åæ‚”
             [minr,index]=min((queue_length+1)'./mean_service_rate);
             minr=queue_length(index);
             if minr==0
@@ -94,7 +94,7 @@ while(students_arrived<students) %²»¶ÏÓĞÑ§Éúµ½À´
                 Mintime=student(queue_member(index,minr)).PredictTime+(1/(mean_service_rate(index)));
             end
             oldline=student(i).Line;
-            %Àë¿ªÒ»¶ÓÈ¥ÁíÒ»¶Ó
+            %ç¦»å¼€ä¸€é˜Ÿå»å¦ä¸€é˜Ÿ
             if student(i).PredictTime>student(i).ChangeThreshold +Mintime
                 for j=student(i).Personbeforeline+2:queue_length(oldline)
                     %someoneLeave
@@ -121,7 +121,7 @@ while(students_arrived<students) %²»¶ÏÓĞÑ§Éúµ½À´
                 queue_length(index)=minr+1;
                 queue_member(index,minr+1)=i;
             end
-            %Àë¿ªÊ³ÌÃ
+            %ç¦»å¼€é£Ÿå ‚
             if student(i).PredictTime>student(i).QuitThreshold +Nowtime
                 if student(i).Line~=oldline
                     students_change=students_change-1;
@@ -144,12 +144,12 @@ while(students_arrived<students) %²»¶ÏÓĞÑ§Éúµ½À´
             end
         end
     end
-    %½øÈë¶ÓÎéÊ±Ö»ÄÜÒÀ¾İ¶ÓÎé³¤¶È
+    %è¿›å…¥é˜Ÿä¼æ—¶åªèƒ½ä¾æ®é˜Ÿä¼é•¿åº¦
     student(students_arrived).EnterTime=Nowtime;
     [minr,index]=min(queue_length);
     doqueue=false;
     conflict=false;
-    %Èç¹ûÊÇ²å¶ÓÕß²¢ÇÒÆğÁË²å¶ÓµÄÄîÍ·ÏÖÔÚÈ¥ÅÅµ½Ä³¸öÇ°ÃæµÄÄÇ¸ö²å¶ÓÕßºóÃæÊÇÓĞÀûµÄ£¬ÔòÈ¥²å¶Ó
+    %å¦‚æœæ˜¯æ’é˜Ÿè€…å¹¶ä¸”èµ·äº†æ’é˜Ÿçš„å¿µå¤´ç°åœ¨å»æ’åˆ°æŸä¸ªå‰é¢çš„é‚£ä¸ªæ’é˜Ÿè€…åé¢æ˜¯æœ‰åˆ©çš„ï¼Œåˆ™å»æ’é˜Ÿ
     if student(students_arrived).Cheated == 1 && rand()<=cheated_queue_rates
         for i=1:windows
             for j=1:minr-1
@@ -228,14 +228,14 @@ while(students_arrived<students) %²»¶ÏÓĞÑ§Éúµ½À´
     average_unSatisfaction_sample(sample_point)=average_unSatisfaction/students_leave;
 end
 
-while(students_leave+students_quit<students) %Ã»ÈËÀ´ÁË£¬¶ÓÎé»¹ÔÚÅÅ
+while(students_leave+students_quit<students) %æ²¡äººæ¥äº†ï¼Œé˜Ÿä¼è¿˜åœ¨æ’
     sample_point=sample_point+1;
     Nowtime=Nowtime+exprnd(1/mean_arrival_rate);
     Nowtime_sample(sample_point)=Nowtime;
     %disp(['time:',num2str(Nowtime)]);
-    %¸ÃÀë¿ªµÄÈË¶¼Àë¿ª£¬²¢ÇÒÃ¿¸öÒÑÔÚÅÅ¶ÓÇÒ¹Û²ìÍêÁËµÄÈËËãÒ»ÏÂÊÇ·ñÒªÀë¿ª»ò»»¶Ó
+    %è¯¥ç¦»å¼€çš„äººéƒ½ç¦»å¼€ï¼Œå¹¶ä¸”æ¯ä¸ªå·²åœ¨æ’é˜Ÿä¸”è§‚å¯Ÿå®Œäº†çš„äººç®—ä¸€ä¸‹æ˜¯å¦è¦ç¦»å¼€æˆ–æ¢é˜Ÿ
     for i=1:students_arrived
-        if Nowtime>=student(i).RealTime && student(i).Leaved==false%·şÎñÍêÁË 
+        if Nowtime>=student(i).RealTime && student(i).Leaved==false%æœåŠ¡å®Œäº† 
             %disp(['student ',num2str(i),' leaved']);
             students_leave= students_leave+1;
             student(i).Leaved=true;
@@ -260,7 +260,7 @@ while(students_leave+students_quit<students) %Ã»ÈËÀ´ÁË£¬¶ÓÎé»¹ÔÚÅÅ
                 Mintime=student(queue_member(index,minr)).PredictTime+(1/(mean_service_rate(index)));
             end
             oldline=student(i).Line;
-            %Àë¿ªÒ»¶ÓÈ¥ÁíÒ»¶Ó
+            %ç¦»å¼€ä¸€é˜Ÿå»å¦ä¸€é˜Ÿ
             if student(i).PredictTime>student(i).ChangeThreshold +Mintime
                 %disp(['student ',num2str(i),' change from ',num2str(oldline),' to ',num2str(index)]);
                 for j=student(i).Personbeforeline+2:queue_length(oldline)
@@ -289,7 +289,7 @@ while(students_leave+students_quit<students) %Ã»ÈËÀ´ÁË£¬¶ÓÎé»¹ÔÚÅÅ
                 queue_length(index)=minr+1;
                 queue_member(index,minr+1)=i;
             end
-            %Àë¿ªÊ³ÌÃ
+            %ç¦»å¼€é£Ÿå ‚
             if student(i).PredictTime>student(i).QuitThreshold +Nowtime
                 if student(i).Line~=oldline
                     students_change=students_change-1;
@@ -333,7 +333,7 @@ while(students_leave+students_quit<students) %Ã»ÈËÀ´ÁË£¬¶ÓÎé»¹ÔÚÅÅ
     average_unSatisfaction_sample(sample_point)=average_unSatisfaction/(students_leave+students_quit);
 end
 
-%²å¶ÓÕßÓë²»²å¶ÓÕß¿ÉÄÜÏà»¥×ª»¯£¬²¢ÇÒÈİÈÌ¶È¿ÉÄÜÓĞ±ä»¯
+%æ’é˜Ÿè€…ä¸ä¸æ’é˜Ÿè€…å¯èƒ½ç›¸äº’è½¬åŒ–ï¼Œå¹¶ä¸”å®¹å¿åº¦å¯èƒ½æœ‰å˜åŒ–
 for i=1:students
     if student(i).Quited==true && rand()<=quit2cheat
         student(i).Nextcheated=true;
@@ -397,5 +397,5 @@ uct(x)=(average_wait_time-cheat_time)/(students_leave-cl);
 aus(x)=average_unSatisfaction/students;
 disp(['cheatperson',num2str(students_cheat),'aus',num2str(aus(x)),'cus',num2str(cheat_unSatisfaction/(students*cheated_person_rates)),'ucus',num2str(uncheat_unSatisfaction/(students-students*cheated_person_rates))]);
 disp(['awt',num2str(awt(x)),'ct',num2str(ct(x)),'uct',num2str(uct(x))]);
-disp(['quit rate:',num2str(students_quit/students),' maaxlength of queue',num2str(max(maxlength)),'average tolerance',num2str(average_tolerance(x))]);
+disp(['quit rate:',num2str(students_quit/students),' maxlength of queue',num2str(max(maxlength)),'average tolerance',num2str(average_tolerance(x))]);
 end
