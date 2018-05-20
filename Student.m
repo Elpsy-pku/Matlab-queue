@@ -6,7 +6,9 @@ classdef Student
       RegretCost       %后悔成本：初始决定
       ObserveTime      %观察时间：初始决定
       Tolerance        %容忍度：初始决定
-       
+      Nextcheated      %下一轮是否插队
+      NextTolerance    %下一轮容忍度
+      
       %排在哪个队：进入食堂时决定，之后可能由changeLine更改
       Line             
       %前面排了多少人：getinQueue时决定，
@@ -50,52 +52,7 @@ classdef Student
               obj.RegretCost=rand();
               obj.Getangry=0;
               obj.Tolerance=100000;
-%             obj.QuitThreshold = QuitThreshold;
+              obj.NextTolerance=100000;
         end
-        
-        function getSatisfaction(obj,mean_service_time)
-              obj.Satisfaction=1/(obj.RealTime+3*mean_service_time*obj.Bequeued);
-        end
-        
-        function getinQueue(obj,minr,index,Nowtime)
-            obj.Line=index;
-            obj.Personbeforeline=minr;
-            obj.ServiceTime=exprnd(mean_service_rate(obj.Line));
-            if minr==0
-                obj.PredictTime=Nowtime+1/mean_service_rate(obj.Line);
-                obj.RealTime=Nowtime+obj.ServiceTime;
-            else
-                obj.PredictTime=student(queue_member(index,minr)).PredictTime+1/mean_service_rate(obj.Line);
-                obj.RealTime=student(queue_member(index,minr)).RealTime+1/mean_service_rate(obj.Line);+obj.ServiceTime;
-            end
-        end
-        
-        function changeLine(obj,minr,index)
-            obj.Line=index;
-            obj.Personbeforeline=minr;
-            obj.ServiceTime=exprnd(mean_service_rate(obj.Line));
-            if minr==0
-                obj.PredictTime=Nowtime+1/mean_service_rate(obj.Line);
-                obj.RealTime=Nowtime+obj.ServiceTime;
-            else
-                obj.PredictTime=student(queue_member(index,minr)).PredictTime+1/mean_service_rate(obj.Line);
-                obj.RealTime=student(queue_member(index,minr)).RealTime+obj.ServiceTime;
-            end
-            
-        end
-        
-        function someoneLeave(obj,leaveone)
-            obj.Personbeforeline=obj.Personbeforeline-1;
-            obj.PredictTime=obj.PredictTime-1/mean_service_rate(obj.Line);
-            obj.RealTime=obj.RealTime-student(leaveone).ServiceTime;
-        end
-        
-        function someonequeue(obj,cheatedone)
-            obj.Personbeforeline=obj.Personbeforeline+1;
-            obj.Bequeued=obj.Bequeued+1;
-            obj.PredictTime=obj.PredictTime+1/mean_service_rate(obj.Line);
-            obj.RealTime=student(cheatedone).ServiceTime+obj.RealTime;
-        end
-        
    end
 end
